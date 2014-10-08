@@ -1,8 +1,9 @@
 module TicTacToe
+
   class Game
-    
+
     attr_reader :computer_player, :board
-    
+
     def initialize
       @board = Board.new
       @rules = Rules.new(@board)
@@ -11,47 +12,37 @@ module TicTacToe
     end
 
     def in_progress?
-      return false if winner_exists?
-      return false if tie_exists?
+      return false if winner || tie
       return true
     end
 
     def move(position)
-      board.set_mark(current_mark, position)
+      @board.set_mark(current_mark, position)
       change_current_mark
     end
 
     def get_mark_at(position)
-      board.get_mark_at(position)
+      @board.get_mark_at(position)
     end
-    
+
     def winner
-      rules.winner
+      @rules.winner
     end
-    
+
     def tie
-      rules.tie
+      @rules.tie
     end
-    
+
     private
-    
-    attr_reader :marks, :rules
 
     def current_mark
-      marks.first
+      @marks.first
     end
-    
+
     def change_current_mark
-      marks.reverse!
-    end
-    
-    def winner_exists?
-      !winner.nil?
-    end
-    
-    def tie_exists?
-      tie
+      @marks.reverse!
     end
 
   end
+
 end

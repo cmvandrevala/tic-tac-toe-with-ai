@@ -37,7 +37,7 @@ describe "playing a game" do
     expect(game).not_to be_in_progress
     expect(game.winner).to eq("O")
   end
-  
+
   it "ties a game" do
     game = TicTacToe::Game.new
 
@@ -54,10 +54,10 @@ describe "playing a game" do
     expect(game).not_to be_in_progress
     expect(game.winner).to eq("tie")
   end
-  
+
   it "lets the computer win" do
     game = TicTacToe::Game.new
-    
+
     game.move(1)
     game.move(2)
     game.move(3)
@@ -66,13 +66,13 @@ describe "playing a game" do
 
     ai_move = game.computer_player.decide_move(game.board.return_entire_board)
     expect(ai_move).to eq(8)
-    
+
     game.move(ai_move)
-    
+
     expect(game).not_to be_in_progress
     expect(game.winner).to eq("O")
-    
+
   end
-    
+
 
 end
